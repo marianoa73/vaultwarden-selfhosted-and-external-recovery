@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-GUIDES = ("why", "architecture", "install", "security", "backup", "recovery", "emergency-access", "limitations")
+GUIDES = ("why", "architecture", "install", "security", "backup", "options", "recovery", "emergency-access", "limitations")
 PAIRS = [("README.es.md", "README.md")] + [(f"docs/{n}.md", f"docs/{n}.en.md") for n in GUIDES]
 
 

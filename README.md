@@ -44,7 +44,7 @@ Four independent layers: client-side vault encryption, a second factor, a separa
 
 ![Nightly backup](docs/assets/03-backup.en.svg?v=1)
 
-Every night: snapshot, encrypt, verify by decrypting, checksum, rotate, send. The remote host stores the files but never has the passphrase. See [docs/backup.en.md](docs/backup.en.md).
+Every night: snapshot, encrypt, verify by decrypting, checksum, rotate, send. The remote host stores the files but never has the passphrase. See [docs/backup.en.md](docs/backup.en.md). The server and the standby can be a virtual machine, a VPS or a local machine, and the encrypted copy can also go to a cloud drive, an external disk or another safe place: see [docs/options.en.md](docs/options.en.md).
 
 ## Contingency
 
@@ -85,6 +85,7 @@ The author, with Claude, Codex and OpenRouter/OpenCode as AI assistants under hu
 | Installing the local server | [install.en.md](docs/install.en.md) | [install.md](docs/install.md) |
 | Security model and checklist | [security.en.md](docs/security.en.md) | [security.md](docs/security.md) |
 | Local and remote backup | [backup.en.md](docs/backup.en.md) | [backup.md](docs/backup.md) |
+| Hosting, destinations and encryption options (VM, VPS, local, cloud drive) | [options.en.md](docs/options.en.md) | [options.md](docs/options.md) |
 | Recovery and contingency | [recovery.en.md](docs/recovery.en.md) | [recovery.md](docs/recovery.md) |
 | Emergency access | [emergency-access.en.md](docs/emergency-access.en.md) | [emergency-access.md](docs/emergency-access.md) |
 | Limitations | [limitations.en.md](docs/limitations.en.md) | [limitations.md](docs/limitations.md) |

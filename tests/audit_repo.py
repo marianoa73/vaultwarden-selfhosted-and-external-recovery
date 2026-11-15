@@ -28,8 +28,8 @@ for p in ROOT.rglob('*'):
                 continue
             if not (p.parent / href.split('#')[0].split('?')[0]).exists():
                 fail.append(f'{rel}: missing link {href}')
-for name in ['README.md', 'README.es.md', 'LICENSE', 'NOTICE.md', 'SECURITY.md', 'CHANGELOG.md', 'CONTRIBUTORS.md', 'docs/index.html', 'docs/.nojekyll',
-             'src/vw-common.sh', 'src/vw-snapshot.sh', 'src/vw-backup.sh', 'src/vw-send.sh', 'src/vw-receive.sh', 'src/vw-restore.sh',
+for name in ['README.md', 'README.es.md', 'docs/options.md', 'docs/options.en.md', 'LICENSE', 'NOTICE.md', 'SECURITY.md', 'CHANGELOG.md', 'CONTRIBUTORS.md', 'docs/index.html', 'docs/.nojekyll',
+             'src/vw-common.sh', 'src/vw-snapshot.sh', 'src/vw-backup.sh', 'src/vw-send.sh', 'src/vw-copy.sh', 'src/vw-receive.sh', 'src/vw-restore.sh',
              'src/vw-init-passphrase.sh', 'AGENTS.md', 'skill/vaultwarden-recovery-deploy/SKILL.md', 'examples/compose.primary.yml', 'examples/compose.standby.yml', 'examples/vw.env.example', 'tests/test_backup_restore.sh']:
     if not (ROOT / name).is_file():
         fail.append(f'missing {name}')

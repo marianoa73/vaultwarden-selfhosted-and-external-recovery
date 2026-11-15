@@ -6,6 +6,8 @@
 
 ## Design
 
+The examples use a home server and a remote host, but any machine type (physical, virtual or VPS) and any extra destination (cloud drive, external disk, NAS) works with the same encrypted archive: see [options](options.en.md).
+
 The primary server makes an encrypted, verified copy every night and sends it to a remote host. Three rules shape everything: **the remote side can never read the copy**, **a bad backup never replaces a good one** and **the passphrase is a different secret from the master password**.
 
 ## What a backup contains

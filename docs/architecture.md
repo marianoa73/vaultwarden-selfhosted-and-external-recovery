@@ -36,4 +36,4 @@
 3. El host remoto valida el tipo de archivo, lo guarda con su hash y conserva las últimas copias. No puede abrirlas.
 4. En una contingencia una persona restaura el último archivo en el respaldo y lo inicia.
 
-Los scripts están en `src/`; cada ruta sale de un archivo de entorno, nada está escrito fijo. Es posible una segunda copia opcional en la nube del mismo archivo cifrado y no suma ningún secreto nuevo.
+Los scripts están en `src/`; cada ruta sale de un archivo de entorno, nada está escrito fijo. Es posible una segunda copia opcional del mismo archivo cifrado (drive en la nube, disco externo, NAS) y no suma ningún secreto nuevo. El servidor y el standby pueden ser físicos, virtuales o un VPS: ver [opciones](options.md).

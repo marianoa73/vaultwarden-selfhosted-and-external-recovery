@@ -44,7 +44,7 @@ Cuatro capas independientes: cifrado de la bóveda en el cliente, un segundo fac
 
 ![Backup nocturno](docs/assets/03-backup.es.svg?v=1)
 
-Cada noche: foto, cifrado, verificación descifrando, hash, rotación y envío. El host remoto guarda los archivos pero nunca tiene la frase. Ver [docs/backup.md](docs/backup.md).
+Cada noche: foto, cifrado, verificación descifrando, hash, rotación y envío. El host remoto guarda los archivos pero nunca tiene la frase. Ver [docs/backup.md](docs/backup.md). El servidor y el standby pueden ser una máquina virtual, un VPS o un equipo local, y la copia cifrada puede ir también a un drive en la nube, un disco externo u otro sitio seguro: ver [docs/options.md](docs/options.md).
 
 ## Contingencia
 
@@ -85,6 +85,7 @@ El autor, con Claude, Codex y OpenRouter/OpenCode como asistentes de IA bajo rev
 | Instalación del servidor local | [install.en.md](docs/install.en.md) | [install.md](docs/install.md) |
 | Modelo de seguridad y lista de control | [security.en.md](docs/security.en.md) | [security.md](docs/security.md) |
 | Backup local y remoto | [backup.en.md](docs/backup.en.md) | [backup.md](docs/backup.md) |
+| Opciones de alojamiento, destinos y cifrado (VM, VPS, local, drive en la nube) | [options.en.md](docs/options.en.md) | [options.md](docs/options.md) |
 | Recuperación y contingencia | [recovery.en.md](docs/recovery.en.md) | [recovery.md](docs/recovery.md) |
 | Acceso de emergencia | [emergency-access.en.md](docs/emergency-access.en.md) | [emergency-access.md](docs/emergency-access.md) |
 | Limitaciones | [limitations.en.md](docs/limitations.en.md) | [limitations.md](docs/limitations.md) |

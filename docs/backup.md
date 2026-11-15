@@ -6,6 +6,8 @@
 
 ## Diseño
 
+Los ejemplos usan un servidor casero y un host remoto, pero sirve cualquier tipo de máquina (física, virtual o VPS) y cualquier destino extra (drive en la nube, disco externo, NAS) con el mismo archivo cifrado: ver [opciones](options.md).
+
 El servidor principal hace cada noche una copia cifrada y verificada y la envía a un host remoto. Tres reglas lo ordenan todo: **el lado remoto nunca puede leer la copia**, **un backup malo nunca reemplaza a uno bueno** y **la frase es un secreto distinto de la contraseña maestra**.
 
 ## Qué contiene un backup

@@ -25,6 +25,7 @@ reasons are in `docs/` (start with `docs/why.en.md`, `docs/security.en.md`); the
 
 Ask, one short question at a time:
 - Operating system of the machine that will host the vault: **Linux**, **Windows**, or macOS.
+- Where should the encrypted copies go besides the remote server: a **cloud drive, external disk or NAS** (see `docs/options.en.md`)? The person creates the account and the `rclone` login; you only set `VW_COPY_DIR` / `VW_RCLONE_REMOTE`. The passphrase never goes to the same place as the archives.
 - Is there a **second, remote Linux server** (a small VPS) for the encrypted copies? Who administers it?
 - Is a **private mesh VPN** (Tailscale, Headscale, WireGuard) already in use, or should it be set up first?
 - Does the person already have a **second factor** (authenticator app, hardware keys) and **paper** for the root secrets?

@@ -36,4 +36,4 @@
 3. The remote host validates the file type, stores it with a checksum and keeps the last copies. It cannot open them.
 4. In a contingency a person restores the latest archive into the standby and starts it.
 
-The scripts are in `src/`; every path comes from an environment file, nothing is hard-coded. An optional second cloud copy of the same encrypted archive is possible and adds no new secret.
+The scripts are in `src/`; every path comes from an environment file, nothing is hard-coded. An optional second copy of the same encrypted archive (cloud drive, external disk, NAS) is possible and adds no new secret. Server and standby can be physical, virtual or a VPS: see [options](options.en.md).

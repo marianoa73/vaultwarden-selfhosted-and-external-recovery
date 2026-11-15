@@ -54,4 +54,14 @@ head -c 20000 /dev/urandom > "$T/junk"; SSH_ORIGINAL_COMMAND="20260102-000000" "
 # 8. the passphrase helper refuses to run without a real terminal and creates nothing
 "$R/src/vw-init-passphrase.sh" "$T/newpass" </dev/null >/dev/null 2>&1 && fail "init-passphrase ran without a terminal"
 [ ! -e "$T/newpass" ] || fail "init-passphrase created a file without a terminal"
-echo "OK: backup, rotation, encryption, restore, tamper checks and receiver"
+# 9. extra destinations: a directory and an rclone remote (local backend); readable files are refused
+if command -v rclone >/dev/null; then
+  export VW_COPY_DIR="$T/usb" VW_RCLONE_REMOTE="$T/cloud"; mkdir -p "$T/cloud"; rm -f "$T"/out/vault-*; sleep 1
+  "$R/src/vw-backup.sh" >/dev/null 2>"$T/err" || fail "backup with extra destinations failed"
+  [ "$(ls "$T/usb"/vault-*.tar.gpg | wc -l)" = 1 ] || fail "directory copy missing"
+  [ "$(ls "$T/cloud"/vault-*.tar.gpg | wc -l)" = 1 ] || fail "rclone copy missing"
+  echo "not encrypted" > "$T/vault-20260101-000001.tar.gpg"
+  "$R/src/vw-copy.sh" "$T/vault-20260101-000001.tar.gpg" >/dev/null 2>&1 && fail "copied a file that is not encrypted"
+  unset VW_COPY_DIR VW_RCLONE_REMOTE
+else echo "note: rclone not installed, extra-destination test skipped"; fi
+echo "OK: backup, rotation, encryption, restore, tamper checks, receiver and extra destinations"

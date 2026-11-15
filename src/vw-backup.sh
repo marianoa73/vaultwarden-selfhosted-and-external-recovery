@@ -25,4 +25,5 @@ mv "$TMP" "$OUT"; trap - EXIT; rm -rf "$V"
 ls -1t "$VW_BACKUP_OUT"/vault-*.tar.gpg | tail -n +$((VW_KEEP + 1)) | while read -r old; do rm -f "$old" "${old%.tar.gpg}.sha256"; done
 echo "backup ok: $(basename "$OUT") ($(du -h "$OUT" | cut -f1)), users=$USERS items=$ITEMS"
 [ -n "${VW_REMOTE:-}" ] && "$(dirname "$0")/vw-send.sh" "$OUT"
+if [ -n "${VW_COPY_DIR:-}${VW_RCLONE_REMOTE:-}" ]; then "$(dirname "$0")/vw-copy.sh" "$OUT" || echo "warning: the extra copy failed" >&2; fi
 exit 0
