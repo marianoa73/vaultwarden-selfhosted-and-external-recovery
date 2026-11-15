@@ -51,4 +51,7 @@ SSH_ORIGINAL_COMMAND="20260101-000000" "$R/src/vw-receive.sh" < "$GOOD" >/dev/nu
 SSH_ORIGINAL_COMMAND="../../etc" "$R/src/vw-receive.sh" < "$GOOD" >/dev/null 2>&1 && fail "receiver accepted a path in the label"
 head -c 20000 /dev/urandom > "$T/junk"; SSH_ORIGINAL_COMMAND="20260102-000000" "$R/src/vw-receive.sh" < "$T/junk" >/dev/null 2>&1 && fail "receiver accepted a non-GnuPG file"
 [ -f "$VW_REMOTE_DIR/vault-20260101-000000.sha256" ] || fail "receiver did not write the checksum"
+# 8. the passphrase helper refuses to run without a real terminal and creates nothing
+"$R/src/vw-init-passphrase.sh" "$T/newpass" </dev/null >/dev/null 2>&1 && fail "init-passphrase ran without a terminal"
+[ ! -e "$T/newpass" ] || fail "init-passphrase created a file without a terminal"
 echo "OK: backup, rotation, encryption, restore, tamper checks and receiver"

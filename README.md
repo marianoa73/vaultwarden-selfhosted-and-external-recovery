@@ -68,6 +68,10 @@ Which secrets are needed to recover and what happens without them, plus a second
 - Encrypted, verified backups with their own passphrase; a restore rehearsal every quarter.
 - Browsers do not save passwords; no secrets in chat, notes, repositories or assistants.
 
+## Deploy with an AI assistant
+
+The repository includes an agent guide, [skill/vaultwarden-recovery-deploy/SKILL.md](skill/vaultwarden-recovery-deploy/SKILL.md), that an AI assistant can read to deploy this design for you on **Linux or Windows (through WSL2)**. It asks before every change, runs the checks, and **never sees your secrets**: you type the master password and generate the backup passphrase yourself. [AGENTS.md](AGENTS.md) points other agents to it.
+
 ## Contributors
 
 The author, with Claude, Codex and OpenRouter/OpenCode as AI assistants under human review. See [CONTRIBUTORS.md](CONTRIBUTORS.md).

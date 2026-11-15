@@ -30,7 +30,7 @@ for p in ROOT.rglob('*'):
                 fail.append(f'{rel}: missing link {href}')
 for name in ['README.md', 'README.es.md', 'LICENSE', 'NOTICE.md', 'SECURITY.md', 'CHANGELOG.md', 'CONTRIBUTORS.md', 'docs/index.html', 'docs/.nojekyll',
              'src/vw-common.sh', 'src/vw-snapshot.sh', 'src/vw-backup.sh', 'src/vw-send.sh', 'src/vw-receive.sh', 'src/vw-restore.sh',
-             'examples/compose.primary.yml', 'examples/compose.standby.yml', 'examples/vw.env.example', 'tests/test_backup_restore.sh']:
+             'src/vw-init-passphrase.sh', 'AGENTS.md', 'skill/vaultwarden-recovery-deploy/SKILL.md', 'examples/compose.primary.yml', 'examples/compose.standby.yml', 'examples/vw.env.example', 'tests/test_backup_restore.sh']:
     if not (ROOT / name).is_file():
         fail.append(f'missing {name}')
 if fail:

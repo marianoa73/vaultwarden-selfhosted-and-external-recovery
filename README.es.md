@@ -68,6 +68,10 @@ Qué secretos hacen falta para recuperar y qué pasa sin ellos, más una segunda
 - Backups cifrados y verificados con su propia frase; un ensayo de restauración cada trimestre.
 - Los navegadores no guardan contraseñas; ningún secreto en chats, notas, repositorios ni asistentes.
 
+## Desplegar con un asistente de IA
+
+El repositorio incluye una guía para agentes, [skill/vaultwarden-recovery-deploy/SKILL.md](skill/vaultwarden-recovery-deploy/SKILL.md), que un asistente de IA puede leer para desplegar este diseño por vos en **Linux o Windows (con WSL2)**. Pregunta antes de cada cambio, corre las verificaciones y **nunca ve tus secretos**: la contraseña maestra la escribís vos y la frase del backup la generás vos. [AGENTS.md](AGENTS.md) lleva a otros agentes hasta ella.
+
 ## Colaboradores
 
 El autor, con Claude, Codex y OpenRouter/OpenCode como asistentes de IA bajo revisión humana. Ver [CONTRIBUTORS.md](CONTRIBUTORS.md).
