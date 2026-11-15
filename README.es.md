@@ -2,8 +2,6 @@
 
 <p align="center">
 <a href="README.md"><img src="docs/assets/btn-en.svg" height="44" alt="View in English"></a>
-&nbsp;
-<a href="https://marianoa73.github.io/vaultwarden-selfhosted-and-external-recovery/?lang=es"><img src="docs/assets/btn-site-es.svg" height="44" alt="Página interactiva (ES / EN)"></a>
 </p>
 
 > *Un solo lugar para todas las claves: bóveda propia, copia cifrada fuera de sitio y una contingencia probada.*

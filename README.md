@@ -2,8 +2,6 @@
 
 <p align="center">
 <a href="README.es.md"><img src="docs/assets/btn-es.svg" height="44" alt="Ver en Español"></a>
-&nbsp;
-<a href="https://marianoa73.github.io/vaultwarden-selfhosted-and-external-recovery/"><img src="docs/assets/btn-site-en.svg" height="44" alt="Interactive page (EN / ES)"></a>
 </p>
 
 > *One place for every key: a self-hosted vault, an encrypted off-site copy and a contingency that has been tried.*
