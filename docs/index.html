@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vaultwarden Self-Hosted &amp; External Recovery</title>
+<meta name="description" content="A self-hosted password vault, an encrypted off-site copy and a tested contingency. / Una bóveda de contraseñas propia, una copia cifrada fuera de sitio y una contingencia probada.">
+<style>
+:root{--bg:#0F1115;--box:#202630;--fg:#EDF0F4;--muted:#BBC5D4;--accent:#C0602B;--line:#2b3340}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none!important}
+a{color:var(--accent)}
+header{position:sticky;top:0;z-index:5;background:rgba(15,17,21,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.bar{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:.2px;color:var(--fg);text-decoration:none}.brand b{color:var(--accent)}
+nav{display:flex;gap:14px;flex:1;flex-wrap:wrap}nav a{color:var(--muted);text-decoration:none;font-size:15px}nav a:hover{color:var(--fg)}
+.lang{display:inline-flex;border:2px solid var(--accent);border-radius:999px;overflow:hidden}
+.lang button{background:transparent;color:var(--accent);border:0;padding:6px 16px;font:700 15px system-ui;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+main{max-width:1100px;margin:0 auto;padding:0 20px 60px}
+.hero{padding:56px 0 24px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.1;margin:0 0 12px}
+.hero p.lead{font-size:20px;color:var(--muted);max-width:760px;margin:0 0 22px}
+.tag{color:var(--accent);font-weight:700}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 22px;border-radius:999px;border:2px solid var(--accent);font-weight:700;text-decoration:none}
+.btn.p{background:var(--accent);color:var(--bg)}
+section{padding:42px 0 6px}h2{font-size:28px;margin:0 0 14px}h2 small{color:var(--muted);font-weight:400;font-size:15px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--box);border:1px solid var(--line);border-radius:14px;padding:16px 18px}.card h3{margin:0 0 6px;font-size:18px}.card p{margin:0;color:var(--muted);font-size:15.5px}
+figure{margin:18px 0}figure img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+figcaption{color:var(--muted);font-size:14px;margin-top:6px}
+.note{border-left:4px solid var(--accent);background:var(--box);padding:12px 16px;border-radius:0 10px 10px 0;color:var(--muted)}
+.calc{background:var(--box);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;grid-template-columns:minmax(240px,320px) 1fr;gap:26px}
+@media(max-width:760px){.calc{grid-template-columns:1fr}}
+.calc label{display:block;margin:10px 0 4px;font-weight:600;font-size:15px}
+.calc input[type=range]{width:100%;accent-color:var(--accent)}
+.calc select,.calc input[type=number]{width:100%;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:7px}
+.calc .ck{display:flex;gap:8px;align-items:center;font-weight:400;margin:8px 0}
+.big{font-size:38px;font-weight:800;color:var(--accent);line-height:1.1}.sub{color:var(--muted);font-size:15px;margin:4px 0 14px}
+.row{display:grid;grid-template-columns:minmax(120px,230px) 1fr 80px;gap:10px;align-items:center;margin:5px 0;font-size:14px}
+.row .t{height:14px;background:#2b3340;border-radius:7px;position:relative;overflow:hidden}.row .t i{display:block;height:100%;background:#8a95a8;border-radius:7px}.row .t i.h{background:var(--accent)}
+.row span:last-child{text-align:right;color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}th{background:var(--box)}
+footer{border-top:1px solid var(--line);padding:26px 20px;color:var(--muted);text-align:center;font-size:14px}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="brand" href="#top">Vaultwarden <b>Recovery</b></a>
+<nav>
+<a href="#why"><span lang="en">Why</span><span lang="es">Por qué</span></a>
+<a href="#how"><span lang="en">How</span><span lang="es">Cómo</span></a>
+<a href="#backup"><span lang="en">Backup</span><span lang="es">Backup</span></a>
+<a href="#keys"><span lang="en">Keys</span><span lang="es">Claves</span></a>
+<a href="#security"><span lang="en">Security</span><span lang="es">Seguridad</span></a>
+</nav>
+<div class="lang" role="group" aria-label="Language / Idioma">
+<button type="button" data-set="en" aria-pressed="true">EN</button><button type="button" data-set="es" aria-pressed="false">ES</button>
+</div>
+</div></header>
+<main id="top">
+<div class="hero">
+<h1 lang="en">One place for every key,<br><span class="tag">with a way back</span></h1>
+<h1 lang="es">Un solo lugar para todas las claves,<br><span class="tag">con un camino de regreso</span></h1>
+<p class="lead" lang="en">How to secure and control the credentials of websites, social networks, hosting and AI services with a self-hosted vault, a second factor, an encrypted off-site copy, a standby that switches on only in an emergency and a view-only emergency contact.</p>
+<p class="lead" lang="es">Cómo asegurar y controlar las credenciales de sitios web, redes sociales, hosting y servicios de IA con una bóveda propia, segundo factor, una copia cifrada fuera de sitio, un respaldo que se enciende sólo en una emergencia y un contacto de emergencia de sólo lectura.</p>
+<div class="btns">
+<a class="btn p" href="https://github.com/marianoa73/vaultwarden-selfhosted-and-external-recovery"><span lang="en">View on GitHub</span><span lang="es">Ver en GitHub</span></a>
+<a class="btn" href="https://github.com/marianoa73/vaultwarden-selfhosted-and-external-recovery/blob/main/README.es.md" lang="en">README en español</a>
+<a class="btn" href="https://github.com/marianoa73/vaultwarden-selfhosted-and-external-recovery/blob/main/README.md" lang="es">README in English</a>
+</div>
+</div>
+
+<section id="why">
+<h2 lang="en">Why this project</h2><h2 lang="es">Por qué este proyecto</h2>
+<p lang="en">Many projects mean many keys. This design secures and controls all of them in one place: <b>paper for the few keys that open everything, a password manager for the many you use daily</b>.</p>
+<p lang="es">Muchos proyectos son muchas claves. Este diseño las asegura y controla todas en un solo lugar: <b>papel para las pocas claves que abren todo, un gestor de contraseñas para las muchas que se usan a diario</b>.</p>
+<div class="cards">
+<div class="card"><h3 lang="en">Root secrets</h3><h3 lang="es">Secretos raíz</h3><p lang="en">Master password, recovery codes, backup passphrase: on paper, offline, in separate places.</p><p lang="es">Contraseña maestra, códigos de recuperación, frase del backup: en papel, offline, en lugares separados.</p></div>
+<div class="card"><h3 lang="en">Daily credentials</h3><h3 lang="es">Credenciales diarias</h3><p lang="en">Generated, unique and autofilled by the manager. Browsers do not remember passwords.</p><p lang="es">Generadas, únicas y autocompletadas por el gestor. Los navegadores no recuerdan contraseñas.</p></div>
+<div class="card"><h3 lang="en">Machine secrets</h3><h3 lang="es">Secretos de máquina</h3><p lang="en">API keys and tokens in the manager, with small scope, spending caps and a rotation date.</p><p lang="es">Claves de API y tokens en el gestor, con poco alcance, topes de gasto y fecha de rotación.</p></div>
+</div>
+</section>
+
+<section id="how">
+<h2 lang="en">How it is built</h2><h2 lang="es">Cómo está construido</h2>
+<figure><img lang="en" src="assets/01-overview.en.svg" alt="Overview"><img lang="es" src="assets/01-overview.es.svg" alt="Vista general"></figure>
+<figure><img lang="en" src="assets/02-encryption.en.svg" alt="Encryption layers"><img lang="es" src="assets/02-encryption.es.svg" alt="Capas de cifrado"></figure>
+</section>
+
+<section id="backup">
+<h2 lang="en">Backup and contingency</h2><h2 lang="es">Backup y contingencia</h2>
+<figure><img lang="en" src="assets/03-backup.en.svg" alt="Nightly backup"><img lang="es" src="assets/03-backup.es.svg" alt="Backup nocturno"></figure>
+<figure><img lang="en" src="assets/04-contingency.en.svg" alt="Contingency activation"><img lang="es" src="assets/04-contingency.es.svg" alt="Activación de la contingencia"></figure>
+</section>
+
+<section id="keys">
+<h2 lang="en">Keys and emergency access</h2><h2 lang="es">Claves y acceso de emergencia</h2>
+<figure><img lang="en" src="assets/05-keys.en.svg" alt="Keys needed"><img lang="es" src="assets/05-keys.es.svg" alt="Claves necesarias"></figure>
+<figure><img lang="en" src="assets/06-emergency.en.svg" alt="Emergency access"><img lang="es" src="assets/06-emergency.es.svg" alt="Acceso de emergencia"></figure>
+</section>
+
+<section id="security">
+<h2 lang="en">Security recommendations</h2><h2 lang="es">Recomendaciones de seguridad</h2>
+<div class="cards">
+<div class="card"><h3 lang="en">Accounts</h3><h3 lang="es">Cuentas</h3><p lang="en">Long memorised master password, Argon2id raised, authenticator app plus two hardware keys.</p><p lang="es">Contraseña maestra larga y memorizada, Argon2id elevado, app autenticadora más dos llaves físicas.</p></div>
+<div class="card"><h3 lang="en">Server</h3><h3 lang="es">Servidor</h3><p lang="en">Sign-ups closed, admin page off, loopback only behind a private network, image pinned.</p><p lang="es">Registro cerrado, administración apagada, sólo loopback tras una red privada, imagen anclada.</p></div>
+<div class="card"><h3 lang="en">Backups</h3><h3 lang="es">Backups</h3><p lang="en">Encrypted with their own passphrase, verified, rotated; a restore rehearsal every quarter.</p><p lang="es">Cifrados con su propia frase, verificados y rotados; un ensayo de restauración cada trimestre.</p></div>
+<div class="card"><h3 lang="en">Habits</h3><h3 lang="es">Hábitos</h3><p lang="en">No secrets in chat, notes, repositories or assistants; owner and operator accounts separated.</p><p lang="es">Ningún secreto en chats, notas, repositorios ni asistentes; cuentas propietarias y de operación separadas.</p></div>
+</div>
+</section>
+
+</main>
+<footer><span lang="en">MIT License · Author: Mariano Araujo ·</span><span lang="es">Licencia MIT · Autor: Mariano Araujo ·</span> <a href="https://github.com/marianoa73/vaultwarden-selfhosted-and-external-recovery">GitHub</a></footer>
+<script>
+(function(){
+  var root=document.documentElement;
+  function setLang(l,save){
+    if(l!=="en"&&l!=="es")l="en";
+    root.setAttribute("data-lang",l);root.setAttribute("lang",l);
+    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.set===l));});
+    if(save){try{localStorage.setItem("lang",l);}catch(e){}}
+    var u=new URL(location.href);u.searchParams.set("lang",l);history.replaceState(null,"",u);
+  }
+  var q=new URLSearchParams(location.search).get("lang"),saved=null;
+  try{saved=localStorage.getItem("lang");}catch(e){}
+  var start=q||saved||((navigator.language||"en").toLowerCase().indexOf("es")===0?"es":"en");
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.dataset.set,true);});});
+  setLang(start,false);
+})();
+</script>
+</body>
+</html>

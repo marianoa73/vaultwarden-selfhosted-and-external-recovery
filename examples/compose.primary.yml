@@ -1,0 +1,20 @@
+# Primary server. Listens on loopback only; a private-network proxy or VPN publishes it to your devices.
+# Pin the image by digest (docker pull, then docker inspect) and update primary and standby together.
+services:
+  vaultwarden:
+    image: vaultwarden/server@sha256:REPLACE_WITH_THE_DIGEST_YOU_VERIFIED
+    container_name: vaultwarden
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8222:80"
+    environment:
+      DOMAIN: "https://vault.example.internal"
+      SIGNUPS_ALLOWED: "false"          # open only for the minute it takes to create the accounts
+      INVITATIONS_ALLOWED: "false"
+      EMERGENCY_ACCESS_ALLOWED: "true"
+      LOG_LEVEL: "warn"
+      # ADMIN_TOKEN: leave unset unless you need the admin page; if you set it, use an Argon2 hash, not plain text.
+    volumes:
+      - ./data:/data
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]

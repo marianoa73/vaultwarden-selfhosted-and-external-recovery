@@ -1,0 +1,10 @@
+[Unit]
+Description=Encrypted Vaultwarden backup and remote copy
+
+[Service]
+Type=oneshot
+User=vwbackup
+Environment=VW_ENV=/etc/vw-recovery.env
+ExecStart=/opt/vw-recovery/src/vw-backup.sh
+Nice=10
+IOSchedulingClass=idle

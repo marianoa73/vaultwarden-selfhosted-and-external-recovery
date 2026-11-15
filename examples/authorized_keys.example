@@ -1,0 +1,3 @@
+# On the REMOTE host, in the authorized_keys of the receiving user. One dedicated key, one forced command:
+# the key cannot open a shell, forward ports or run anything else.
+restrict,command="/path/to/vw-receive.sh" ssh-ed25519 AAAA...your-dedicated-backup-key... vault-backup-sender
